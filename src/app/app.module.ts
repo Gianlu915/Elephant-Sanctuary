@@ -7,6 +7,8 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AboutComponent } from './pages/about/about.component';
 import { VolunteerComponent } from './pages/volunteer/volunteer.component';
 import { DonateComponent } from './pages/donate/donate.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { DonateComponent } from './pages/donate/donate.component';
     HomepageComponent,
     AboutComponent,
     VolunteerComponent,
-    DonateComponent
+    DonateComponent,
+    NavBarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

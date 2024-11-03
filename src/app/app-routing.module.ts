@@ -8,6 +8,7 @@ import { DonateComponent } from './pages/donate/donate.component';
 const routes: Routes = [
     
     {path: '', component: HomepageComponent},
+    {path: 'homepage', component: HomepageComponent},
     {path: 'about', component: AboutComponent},
     {path: 'volunteer', component: VolunteerComponent},
     {path: 'donate', component: DonateComponent},
