@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,8 @@ import { VolunteerComponent } from './pages/volunteer/volunteer.component';
 import { DonateComponent } from './pages/donate/donate.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SliderComponent } from './components/slider/slider.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +21,15 @@ import { FooterComponent } from './components/footer/footer.component';
     VolunteerComponent,
     DonateComponent,
     NavBarComponent,
-    FooterComponent
+    FooterComponent,
+    SliderComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
