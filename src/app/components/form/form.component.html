@@ -1,31 +1,37 @@
-<form (ngSubmit)="onSubmit()" #contactForm="ngForm">
-    <fieldset>
-        <legend>Contact Us</legend>
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-sm">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name" class="form-control" placeholder="Enter your name">
+        <div *ngIf="messageForm.get('name')?.invalid && messageForm.get('name')?.touched" class="text-danger">
+            Name is required.
+        </div>
+    </div>
 
-        <ul>
-            <li>
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" [(ngModel)]="newMessage.name" required>
-            </li>
+    <div class="form-group">
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" formControlName="surname" class="form-control" placeholder="Enter your surname">
+        <div *ngIf="messageForm.get('surname')?.invalid && messageForm.get('surname')?.touched" class="text-danger">
+            Surname is required.
+        </div>
+    </div>
 
-            <li>
-                <label for="surname">Surname</label>
-                <input type="text" id="surname" name="surname" [(ngModel)]="newMessage.surname" required>
-            </li>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter your email">
+        <div *ngIf="messageForm.get('email')?.invalid && (messageForm.get('email')?.touched || messageForm.get('email')?.dirty)" class="text-danger">
+            <div *ngIf="messageForm.get('email')?.errors?.['required']">Email is required.</div>
+            <div *ngIf="messageForm.get('email')?.errors?.['pattern']">Enter a valid email address.</div>
+        </div>
+    </div>
+    
 
-            <li>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" [(ngModel)]="newMessage.email" required>
-            </li>
+    <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" formControlName="message" class="form-control" placeholder="Type your message"></textarea>
+        <div *ngIf="messageForm.get('message')?.invalid && messageForm.get('message')?.touched" class="text-danger">
+            Message is required.
+        </div>
+    </div>
 
-            <li>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" [(ngModel)]="newMessage.message" required></textarea>
-            </li>
-
-            <li>
-                <input type="submit" value="Submit">
-            </li>
-        </ul>
-    </fieldset>
+    <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="messageForm.invalid">Submit</button>
 </form>

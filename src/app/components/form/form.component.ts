@@ -1,35 +1,44 @@
 import { Component } from '@angular/core';
-import { Message } from '../../models/message.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../../services/message.service';
+import { Message } from '../../models/message.model';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrl: './form.component.css'
+  styleUrls: ['./form.component.css']
 })
 export class FormComponent {
+  messageForm: FormGroup;
 
-  newMessage: Message = {
-    id: 0,            // Puoi inizializzare `id` come 0, oppure lasciarlo non definito se opzionale
-    name: '',
-    surname: '',
-    email: '',
-    message: ''
-  };
-
-  constructor(private messageService: MessageService) {
+  constructor(private fb: FormBuilder, private messageService: MessageService) {
+    this.messageForm = this.fb.group({
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', [Validators.required,  Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
+      message: ['', Validators.required]
+    });
   }
 
-  onSubmit(){
+  onSubmit() {
 
-    this.messageService.addMessage(this.newMessage).subscribe(
+      const newMessage: Message = {
+      id: 0,
+      name: this.messageForm.get('name')?.value,
+      surname: this.messageForm.get('surname')?.value,
+      email: this.messageForm.get('email')?.value,
+      message: this.messageForm.get('message')?.value
+    };
+
+
+    this.messageService.addMessage(newMessage).subscribe(
       (res) => {
         alert('Message Sent');
+        this.messageForm.reset();
       },
       (err) => {
         alert('Error sending message');
       }
-    )
-
+    );
   }
 }
