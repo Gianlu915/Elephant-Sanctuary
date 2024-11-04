@@ -10,6 +10,7 @@ import { Message } from '../../models/message.model';
 })
 export class FormComponent {
   messageForm: FormGroup;
+  showSuccessMessage = false;
 
   constructor(private fb: FormBuilder, private messageService: MessageService) {
     this.messageForm = this.fb.group({
@@ -33,8 +34,9 @@ export class FormComponent {
 
     this.messageService.addMessage(newMessage).subscribe(
       (res) => {
-        alert('Message Sent');
         this.messageForm.reset();
+        this.showSuccessMessage = true; 
+        setTimeout(() => this.showSuccessMessage = false, 5000);
       },
       (err) => {
         alert('Error sending message');

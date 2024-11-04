@@ -1,3 +1,7 @@
+<div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
+    Thanks for contacting us! We'll get back to you as soon as possible.
+  </div>
+
 <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-sm">
     <div class="form-group">
         <label for="name">Name</label>
