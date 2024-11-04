@@ -5,22 +5,22 @@
         <ul>
             <li>
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" required ngModel>
+                <input type="text" id="name" name="name" [(ngModel)]="newMessage.name" required>
             </li>
 
             <li>
                 <label for="surname">Surname</label>
-                <input type="text" id="surname" name="surname" required ngModel>
+                <input type="text" id="surname" name="surname" [(ngModel)]="newMessage.surname" required>
             </li>
 
             <li>
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required ngModel>
+                <input type="email" id="email" name="email" [(ngModel)]="newMessage.email" required>
             </li>
 
             <li>
                 <label for="message">Message:</label>
-                <textarea id="message" name="message" required ngModel></textarea>
+                <textarea id="message" name="message" [(ngModel)]="newMessage.message" required></textarea>
             </li>
 
             <li>

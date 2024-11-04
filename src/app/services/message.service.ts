@@ -13,7 +13,7 @@ export class MessageService {
   constructor(private http: HttpClient) { }
 
   addMessage(message: Message): Observable<Message> {
-    return this.http.post<Message>(this.apiUrl + "message", message);
+    return this.http.post<Message>(this.apiUrl + "messages", message);
   }
 
 
