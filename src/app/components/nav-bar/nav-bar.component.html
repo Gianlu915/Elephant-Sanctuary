@@ -1,13 +1,17 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container-fluid">
-
         <a class="navbar-brand" [routerLink]="">
             <img src="assets/images/elephant.png" alt="Elephant" width="40">
         </a>
 
-        
-        <div class="mx-auto">
-            <ul class="navbar-nav">
+       
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse mx-auto" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a class="nav-link active" [routerLink]="['/homepage']">Home</a>
                 </li>
@@ -23,8 +27,7 @@
             </ul>
         </div>
 
-       
-        <div>
+        <div class="flags">
             <img id="thai" src="assets/images/thailand.png" alt="Thai" width="30">
             <img class="flag ms-2" src="assets/images/spain.png" alt="Esp" width="30">
         </div>

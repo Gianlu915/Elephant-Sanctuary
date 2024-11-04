@@ -5,3 +5,15 @@ ul li img{
 .navbar-nav li{
     margin-right: 30px; 
 }
+
+.flags:hover{
+cursor: pointer;
+}
+
+
+@media (max-width: 575px) {
+    img{
+        width: 20px;
+    }
+
+}
