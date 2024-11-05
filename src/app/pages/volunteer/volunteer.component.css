@@ -1,0 +1,14 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.volunteer{
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+.volunteer p{
+    line-height: 2;
+}
