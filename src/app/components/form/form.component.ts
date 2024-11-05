@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -12,7 +13,7 @@ export class FormComponent {
   messageForm: FormGroup;
   showSuccessMessage = false;
 
-  constructor(private fb: FormBuilder, private messageService: MessageService) {
+  constructor(private fb: FormBuilder, private messageService: MessageService,private router: Router ) {
     this.messageForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -32,15 +33,33 @@ export class FormComponent {
     };
 
 
-    this.messageService.addMessage(newMessage).subscribe(
-      (res) => {
-        this.messageForm.reset();
-        this.showSuccessMessage = true; 
-        setTimeout(() => this.showSuccessMessage = false, 5000);
-      },
-      (err) => {
-        alert('Error sending message');
-      }
-    );
+    if (this.router.url.includes('volunteer')) {
+      this.messageService.addVolunteerMessage(newMessage).subscribe(
+        (res) => {
+          this.messageForm.reset();
+          this.showSuccessMessage = true;
+          setTimeout(() => (this.showSuccessMessage = false), 5000);
+        },
+        (err) => {
+          alert('Error sending volunteer message');
+        }
+      );
+    } else {
+      this.messageService.addMessage(newMessage).subscribe(
+        (res) => {
+          this.messageForm.reset();
+          this.showSuccessMessage = true;
+          setTimeout(() => (this.showSuccessMessage = false), 5000);
+        },
+        (err) => {
+          alert('Error sending general message');
+        }
+      );
+    }
   }
 }
+
+
+
+
+  

@@ -16,6 +16,10 @@ export class MessageService {
     return this.http.post<Message>(this.apiUrl + "messages", message);
   }
 
+  addVolunteerMessage(message: Message): Observable<Message> {
+    return this.http.post<Message>(this.apiUrl + "volunteer", message)
+  }
+
 
 
 }

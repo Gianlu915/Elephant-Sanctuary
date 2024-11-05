@@ -9,6 +9,11 @@
 
 }
 
-.volunteer p{
+p{
     line-height: 2;
+}
+
+.form-container{
+    width: 60%;
+    margin: 0 auto;
 }
