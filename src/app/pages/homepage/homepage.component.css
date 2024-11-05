@@ -1,3 +1,7 @@
+h1{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 #carouselExampleControls{
     margin: 25px;
 
@@ -52,4 +56,16 @@ form input{
 form label{
     margin-bottom: 5px;
     text-align: left;
+}
+
+.book{
+    text-align: center;
+}
+
+.contact-us{
+    color: inherit;
+}
+
+.contact-us:hover{
+    color: teal;
 }
