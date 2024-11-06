@@ -49,6 +49,20 @@ input{
 
 .payment-options{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-options h2{
+    margin-right: 20px;
+}
+
+.payment-options .d-flex > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .payment-icon{
@@ -84,4 +98,18 @@ button {
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
+}
+
+
+@media (max-width: 490px) {
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
 }
