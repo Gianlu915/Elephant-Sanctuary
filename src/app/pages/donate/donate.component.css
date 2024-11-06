@@ -78,6 +78,10 @@ input{
     border: 2px solid #111010;
 }
 
+.payment-icon:focus{
+    border: 2px solid #111010;
+}
+
 .payment-details{
     width: 100%;
 }

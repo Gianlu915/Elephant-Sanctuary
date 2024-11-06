@@ -28,11 +28,11 @@
             <h2><strong>Payment Options</strong></h2>
             <div class="d-flex gap-4 mt-4">
                 <div class="text-center">
-                    <img src="assets/icons/credit.png" alt="credit-card Icon" class="payment-icon">
+                    <img (click)="showCreditPayment()" src="assets/icons/credit.png" alt="credit-card Icon" class="payment-icon" tabindex="0">
                     <span>Credit Card</span>
                 </div>
                 <div class="text-center">
-                    <img src="assets/icons/money-transfer (1).png" alt="mobile-payment Icon" class="payment-icon">
+                    <img (click)="mobilePayment()" src="assets/icons/money-transfer (1).png" alt="mobile-payment Icon" class="payment-icon" tabindex="0">
                     <span>Mobile/Internet Banking</span>
                 </div>
             </div>
@@ -40,6 +40,8 @@
 
         <div class="payment-details mt-4">
             <h3>Payment Details</h3>
+
+            <div *ngIf="showCreditCard">
             <label for="card-number"></label>
             <input type="text" id="card-number" name="card-number" placeholder="Card Number" required>
 
@@ -52,6 +54,13 @@
                     <label for="cvv"></label>
                     <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
                 </div>
+            </div>
+
+            </div>
+
+            <div *ngIf="showMobilePayment">
+                <label for="phone"></label>
+                <input type="phone" id="phone" name="phone" placeholder="Phone" required>
             </div>
         </div>
 

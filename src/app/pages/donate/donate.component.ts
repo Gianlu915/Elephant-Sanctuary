@@ -10,6 +10,8 @@ export class DonateComponent {
 
   donationForm: FormGroup;
   showError: boolean = false;
+  showMobilePayment: boolean = false;
+  showCreditCard: boolean = true;
 
   constructor(private fb: FormBuilder) {
 
@@ -18,5 +20,15 @@ export class DonateComponent {
       email: ['', [Validators.required, Validators.email]], // Validatore per email
       amount: ['', [Validators.required, Validators.min(10)]]
     })
+  }
+
+  mobilePayment() {
+    this.showMobilePayment = true;
+    this.showCreditCard = false;
+  }
+
+  showCreditPayment() {
+    this.showCreditCard = true;
+    this.showMobilePayment = false;
   }
 }
