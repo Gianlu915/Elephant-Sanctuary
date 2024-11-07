@@ -61,11 +61,3 @@ form label{
 .book{
     text-align: center;
 }
-
-.contact-us{
-    color: inherit;
-}
-
-.contact-us:hover{
-    color: teal;
-}

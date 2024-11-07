@@ -1,3 +1,12 @@
 body{
     background-color: rgb(219, 237, 227) !important;
 }
+
+.contact-us{
+    color: inherit;
+}
+
+.contact-us:hover{
+    
+        color: teal;
+}

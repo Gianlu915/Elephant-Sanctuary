@@ -1,9 +1,31 @@
-<section *ngIf="!thanksDiv">
+<section *ngIf="thanksDiv" class="thank-you-message">
+  <div class="text-center mt-5 mb-5">
+    <h2>Thank You, {{ name}}!</h2>
+    <p>Your generous donation helps us provide care and protection to our sanctuary elephants. We are incredibly grateful for your support!</p>
+  </div>
+</section>
+
+<div *ngIf="!thanksDiv" >
+<section class="mb-5">
     <div class="donate mt-5">
       <h2>Support Our Sanctuary</h2>
       <p>Help us protect and care for these gentle giants. Your generous donation directly contributes to the well-being of our rescued elephants and the preservation of their natural habitat. Thank you for being part of our mission.</p>
     </div>
   </section>
+
+  <div class="d-flex flex-column gap-3 align-items-center mt-5 mb-5">
+    <h2 class="book">"If you wish to donate you can reach out to Ton directly on WhatsApp!"</h2>
+    <a href="https://wa.me/66956891020" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center contact-us">
+        <img src="assets/images/whatsapp.png" alt="WhatsApp" width="24">
+        <span class="ms-2">Contact us on WhatsApp</span>
+    </a>
+</div>
+
+<div class="d-flex align-items-center flex-column">
+<h2 class="mb-3">"Donate via Card or Banking"</h2>
+</div>
+
+
   
   <div class="donation-form-container d-flex justify-content-center align-items-center">
     <!-- Form for credit card-->
@@ -157,3 +179,4 @@
     
       <button type="submit">Donate</button>
     </form>
+  </div>
