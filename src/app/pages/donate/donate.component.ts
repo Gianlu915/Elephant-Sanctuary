@@ -12,14 +12,16 @@ export class DonateComponent implements OnInit {
   phoneForm!: FormGroup;
   showMobilePayment: boolean = false;
   showCreditCard: boolean = true;
+  thanksDiv: boolean = false;
+  name: string = '';
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     // form credit card
     this.creditCardForm = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
+      name: ['', [Validators.required,  Validators.pattern('^[a-zA-Z]+$')]],
+      surname: ['', [Validators.required,  Validators.pattern('^[a-zA-Z]+$')]],
       email: ['', [Validators.required, Validators.email]],
       amount: ['', [Validators.required]],
       cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
@@ -29,8 +31,8 @@ export class DonateComponent implements OnInit {
 
     // form mobile payment
     this.phoneForm = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
+      name: ['', [Validators.required,  Validators.pattern('^[a-zA-Z]+$')]],
+      surname: ['', [Validators.required,  Validators.pattern('^[a-zA-Z]+$')]],
       email: ['', [Validators.required, Validators.email]],
       amount: ['', [Validators.required]],
       phone: ['', [Validators.required, Validators.pattern(/^\+?[0-9]{9,15}$/)]]
@@ -41,20 +43,28 @@ export class DonateComponent implements OnInit {
   mobilePayment() {
     this.showMobilePayment = true;
     this.showCreditCard = false;
+    this.creditCardForm.reset();
+    
   }
 
 
   showCreditPayment() {
     this.showCreditCard = true;
     this.showMobilePayment = false;
+    this.phoneForm.reset();
   }
 
   onSubmit() {
     // Controlla quale form è visibile e valido
     if (this.showCreditCard && this.creditCardForm.valid) {
       console.log('Dati per carta di credito:', this.creditCardForm.value);
+      this.thanksDiv = true;
+      this.name = this.creditCardForm.get('name')?.value || '';
+
     } else if (this.showMobilePayment && this.phoneForm.valid) {
       console.log('Dati per pagamento mobile:', this.phoneForm.value);
+      this.thanksDiv = true;
+      this.name = this.phoneForm.get('name')?.value || '';
     } else {
       console.log('Il form non è valido', this.phoneForm.value);
     }

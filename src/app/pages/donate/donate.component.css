@@ -1,3 +1,5 @@
+
+
 .donate{
     text-align: center;
     width: 60%;
@@ -12,7 +14,7 @@ form {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: #bef3eb;
 }
 
 .form-div{
@@ -92,6 +94,12 @@ input{
     margin: 0;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  margin: 0; 
+}
+
 button {
     width: 100%;
     padding: 10px;
@@ -104,16 +112,24 @@ button {
     margin-top: 10px;
 }
 
+div{
+    width: 100%;
+}
+
+small{
+    color: red;
+    text-align: left;
+    margin-top: 5px;
+    width: 100%;
+
+}
+
+
 
 @media (max-width: 490px) {
     form {
         display: flex;
         flex-direction: column;
-        align-items: center;
         width: 100%;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        background-color: #f9f9f9;
-    }
+     }
 }

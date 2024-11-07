@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="!thanksDiv">
     <div class="donate mt-5">
       <h2>Support Our Sanctuary</h2>
       <p>Help us protect and care for these gentle giants. Your generous donation directly contributes to the well-being of our rescued elephants and the preservation of their natural habitat. Thank you for being part of our mission.</p>
@@ -7,20 +7,37 @@
   
   <div class="donation-form-container d-flex justify-content-center align-items-center">
     <!-- Form for credit card-->
-    <form *ngIf="showCreditCard" [formGroup]="creditCardForm" (ngSubmit)="onSubmit()">
+    <form *ngIf="showCreditCard  && !thanksDiv" [formGroup]="creditCardForm" (ngSubmit)="onSubmit()">
       <div class="d-flex form-div gap-3 mb-3">
         <div class="flex-grow-1">
           <label for="name"></label>
-          <input type="text" id="name" formControlName="name" placeholder="Name" required>
+          <input type="text" id="name" formControlName="name" placeholder="Name" required >
+          
+          <div *ngIf="creditCardForm.get('name')?.invalid && (creditCardForm.get('name')?.touched || creditCardForm.get('name')?.dirty)">
+            <small *ngIf="creditCardForm.get('name')?.errors?.['required']">Please enter your name.</small>
+            <small *ngIf="creditCardForm.get('name')?.errors?.['pattern']">Enter a valid name.</small>
+          </div>
         </div>
+
         <div class="flex-grow-1">
           <label for="surname"></label>
           <input type="text" id="surname" formControlName="surname" placeholder="Surname" required>
+
+          <div *ngIf="creditCardForm.get('surname')?.invalid && (creditCardForm.get('surname')?.touched || creditCardForm.get('surname')?.dirty)">
+            <small *ngIf="creditCardForm.get('surname')?.errors?.['required']">Please enter your surname.</small>
+            <small *ngIf="creditCardForm.get('surname')?.errors?.['pattern']">Enter a valid surname.</small>
+          </div>
         </div>
       </div>
   
       <label for="email"></label>
       <input type="email" id="email" formControlName="email" placeholder="Email" required>
+
+      <div *ngIf="creditCardForm.get('email')?.invalid && (creditCardForm.get('email')?.touched || creditCardForm.get('email')?.dirty)">
+        <small *ngIf="creditCardForm.get('email')?.errors?.['required']">Please enter an email.</small>
+        <small *ngIf="creditCardForm.get('email')?.errors?.['email']">Enter a valid email.</small>
+      </div>
+      
       <span class="receipt d-block text-start mb-3">The receipt will be sent via email.</span>
   
       <div class="payment-options mt-3">
@@ -40,16 +57,31 @@
       <div class="payment-details mt-4">
         <h3>Credit Card Details</h3>
         <label for="card-number"></label>
-        <input type="text" id="card-number" formControlName="cardNumber" placeholder="Card Number" required>
+        <input type="text" id="card-number" formControlName="cardNumber" placeholder="Card Number" maxlength="16" required>
+
+        <div *ngIf="creditCardForm.get('cardNumber')?.invalid && (creditCardForm.get('cardNumber')?.touched || creditCardForm.get('cardNumber')?.dirty)">
+          <small *ngIf="creditCardForm.get('cardNumber')?.errors?.['required']">Please enter a Card number.</small>
+          <small *ngIf="creditCardForm.get('cardNumber')?.errors?.['pattern']">Enter a valid Card number.</small>
+        </div>
   
         <div class="d-flex gap-3 mt-2">
           <div class="flex-grow-1">
             <label for="expiry-date"></label>
-            <input type="text" id="expiry-date" formControlName="expiryDate" placeholder="MM/YY" required>
+            <input type="text" id="expiry-date" formControlName="expiryDate" placeholder="MM/YY" maxlength="5" required>
+
+            <div *ngIf="creditCardForm.get('expiryDate')?.invalid && (creditCardForm.get('expiryDate')?.touched || creditCardForm.get('expiryDate')?.dirty)">
+              <small *ngIf="creditCardForm.get('expiryDate')?.errors?.['required']">Please enter a expired date.</small>
+              <small *ngIf="creditCardForm.get('expiryDate')?.errors?.['pattern']">Enter a valid expired date.</small>
+            </div>
           </div>
           <div class="flex-grow-1">
             <label for="cvv"></label>
-            <input type="text" id="cvv" formControlName="cvv" placeholder="CVV" required>
+            <input type="text" id="cvv" formControlName="cvv" placeholder="CVV" maxlength="3" required>
+
+            <div *ngIf="creditCardForm.get('cvv')?.invalid && (creditCardForm.get('cvv')?.touched || creditCardForm.get('cvv')?.dirty)">
+              <small *ngIf="creditCardForm.get('cvv')?.errors?.['required']">Please enter a Cvv.</small>
+              <small *ngIf="creditCardForm.get('cvv')?.errors?.['pattern']">Enter a valid Cvv.</small>
+            </div>
           </div>
         </div>
       </div>
@@ -61,22 +93,40 @@
     </form>
   
     <!-- Form for mobile-->
-    <form *ngIf="showMobilePayment" [formGroup]="phoneForm" (ngSubmit)="onSubmit()">
+    <form *ngIf="showMobilePayment && !thanksDiv" [formGroup]="phoneForm" (ngSubmit)="onSubmit()">
+  
       <div class="d-flex form-div gap-3 mb-3">
         <div class="flex-grow-1">
           <label for="name"></label>
           <input type="text" id="name" formControlName="name" placeholder="Name" required>
+          
+          <div *ngIf="phoneForm.get('name')?.invalid && (phoneForm.get('name')?.touched || phoneForm.get('name')?.dirty)">
+            <small *ngIf="phoneForm.get('name')?.errors?.['required']">Please enter your name.</small>
+            <small *ngIf="phoneForm.get('name')?.errors?.['pattern']">Enter a valid name.</small>
+          </div>
         </div>
+    
         <div class="flex-grow-1">
           <label for="surname"></label>
           <input type="text" id="surname" formControlName="surname" placeholder="Surname" required>
+          
+          <div *ngIf="phoneForm.get('surname')?.invalid && (phoneForm.get('surname')?.touched || phoneForm.get('surname')?.dirty)">
+            <small *ngIf="phoneForm.get('surname')?.errors?.['required']">Please enter your surname.</small>
+            <small *ngIf="phoneForm.get('surname')?.errors?.['pattern']">Enter a valid surname.</small>
+          </div>
         </div>
       </div>
-  
+    
       <label for="email"></label>
       <input type="email" id="email" formControlName="email" placeholder="Email" required>
+    
+      <div *ngIf="phoneForm.get('email')?.invalid && (phoneForm.get('email')?.touched || phoneForm.get('email')?.dirty)">
+        <small *ngIf="phoneForm.get('email')?.errors?.['required']">Please enter an email.</small>
+        <small *ngIf="phoneForm.get('email')?.errors?.['email']">Enter a valid email.</small>
+      </div>
+    
       <span class="receipt d-block text-start mb-3">The receipt will be sent via email.</span>
-  
+    
       <div class="payment-options mt-3">
         <h2><strong>Payment Options</strong></h2>
         <div class="d-flex gap-4 mt-4">
@@ -90,17 +140,20 @@
           </div>
         </div>
       </div>
-  
+    
       <div class="payment-details mt-4">
         <h3>Mobile Payment Details</h3>
         <label for="phone"></label>
-        <input type="text" id="phone" formControlName="phone" placeholder="Phone" required>
+        <input type="number" id="phone" formControlName="phone" placeholder="Phone" required>
+    
+        <div *ngIf="phoneForm.get('phone')?.invalid && (phoneForm.get('phone')?.touched || phoneForm.get('phone')?.dirty)">
+          <small *ngIf="phoneForm.get('phone')?.errors?.['required']">Please enter a valid phone number.</small>
+          <small *ngIf="phoneForm.get('phone')?.errors?.['pattern']">Enter a valid phone number.</small>
+        </div>
       </div>
-  
+    
       <label for="amount"></label>
       <input type="number" id="amount" formControlName="amount" placeholder="Donation amount (฿)" class="mt-3" min="500" required>
-  
+    
       <button type="submit">Donate</button>
     </form>
-  </div>
-  
