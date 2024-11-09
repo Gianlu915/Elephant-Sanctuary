@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Donation } from '../../models/donation.model';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-donate',
@@ -15,7 +18,9 @@ export class DonateComponent implements OnInit {
   thanksDiv: boolean = false;
   name: string = '';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private http: HttpClient, private donationService: MessageService) {}
+
+  
 
   ngOnInit() {
     // form credit card
@@ -59,6 +64,16 @@ export class DonateComponent implements OnInit {
     if (this.showCreditCard && this.creditCardForm.valid) {
       console.log('Dati per carta di credito:', this.creditCardForm.value);
       this.thanksDiv = true;
+      this.donationService.addDonation(donation).subscribe(
+        (response) => {
+          console.log('Donation saved:', response);
+          // Aggiungi eventuali azioni di conferma
+        },
+        (error) => {
+          console.error('Error saving donation:', error);
+          // Gestisci errori (come un messaggio per l’utente)
+        }
+      );
       this.name = this.creditCardForm.get('name')?.value || '';
 
     } else if (this.showMobilePayment && this.phoneForm.valid) {
@@ -68,5 +83,8 @@ export class DonateComponent implements OnInit {
     } else {
       console.log('Il form non è valido', this.phoneForm.value);
     }
+
+
+   
   }
 }

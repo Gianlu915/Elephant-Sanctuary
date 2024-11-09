@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Message } from '../models/message.model';
+import { Donation } from '../models/donation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,8 @@ export class MessageService {
   }
 
 
+  addDonation(donation: Donation): Observable<Donation> {
+    return this.http.post<Donation>(this.apiUrl + "donations", donation)
+  }
 
 }
